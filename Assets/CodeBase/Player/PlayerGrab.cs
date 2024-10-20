@@ -28,7 +28,6 @@ namespace CodeBase.Player
             if (TryPlaceItemInContainer())
                 ReleaseGrabbedItem();
         }
-
         private bool TryPlaceItemInContainer()
         {
             Vector3 spherePosition = GetSpherePosition();
@@ -48,15 +47,6 @@ namespace CodeBase.Player
             return false; 
         }
 
-        private void ReleaseGrabbedItem()
-        {
-            if (_grabItem != null)
-            {
-                _grabItem.transform.SetParent(null);
-                _grabItem = null;
-            }
-        }
-
         private void Grab()
         {
             if (HasGrabItem)
@@ -65,7 +55,6 @@ namespace CodeBase.Player
             if (TryGrabItemFromContainer() || TryGrabItemFromWorld())
                 return;
         }
-
         private bool TryGrabItemFromContainer()
         {
             Vector3 spherePosition = GetSpherePosition();
@@ -83,7 +72,6 @@ namespace CodeBase.Player
 
             return false;
         }
-
         private bool TryGrabItemFromWorld()
         {
             Vector3 spherePosition = GetSpherePosition();
@@ -100,7 +88,6 @@ namespace CodeBase.Player
 
             return false;
         }
-
         private void GrabbedItem(GrabItem grabItem)
         {
             grabItem.transform.SetParent(GrabItemPlacement);
@@ -112,6 +99,14 @@ namespace CodeBase.Player
         private Vector3 GetSpherePosition()
         {
             return transform.position + transform.forward * radius + offset;
+        }
+        private void ReleaseGrabbedItem()
+        {
+            if (_grabItem != null)
+            {
+                _grabItem.transform.SetParent(null);
+                _grabItem = null;
+            }
         }
 
         private void OnDrawGizmos()

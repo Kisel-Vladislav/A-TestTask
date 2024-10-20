@@ -32,6 +32,5 @@ namespace CodeBase.GrabLogic
             item.transform.SetParent(_itemPlacements[_items.Count - 1]);
             item.gameObject.transform.localPosition = Vector3.zero;
         }
-
     }
 }
