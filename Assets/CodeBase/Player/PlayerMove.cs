@@ -1,3 +1,4 @@
+using CodeBase.Infrastructure;
 using CodeBase.Service;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace CodeBase.Player
         private void Awake()
         {
             _camera = Camera.main;
-            _inputService = new StandaloneInputService();
+            _inputService = AllServices.Container.Single<IInputService>();
         }
 
         private void Update()

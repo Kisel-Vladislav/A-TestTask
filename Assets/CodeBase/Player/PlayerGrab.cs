@@ -1,4 +1,6 @@
 using CodeBase.GrabLogic;
+using CodeBase.Infrastructure;
+using CodeBase.Service;
 using UnityEngine;
 namespace CodeBase.Player
 {
@@ -9,14 +11,18 @@ namespace CodeBase.Player
         [SerializeField] private float radius;
 
         private GrabItem _grabItem;
-
+        private IInputService _inputService;
         public bool HasGrabItem => _grabItem != null;
 
+        private void Awake()
+        {
+            _inputService = AllServices.Container.Single<IInputService>();
+        }
         private void Update()
         {
-            if (Input.GetKeyUp(KeyCode.F))
+            if (_inputService.IsGrabButtonUp )
                 Grab();
-            else if (Input.GetKeyUp(KeyCode.G))
+            else if (_inputService.IsDropButtonUp)
                 Drop();
         }
 
