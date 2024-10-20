@@ -413,6 +413,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 618404515}
     m_Modifications:
+    - target: {fileID: 3634511029175878745, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
+      propertyPath: GrabItem
+      value: 
+      objectReference: {fileID: 617844681}
     - target: {fileID: 6251273056354593180, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
       propertyPath: _items.Array.size
       value: 2
@@ -425,6 +429,10 @@ PrefabInstance:
       propertyPath: _items.Array.data[1]
       value: 
       objectReference: {fileID: 617844681}
+    - target: {fileID: 6297419382627900026, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
+      propertyPath: GrabItem
+      value: 
+      objectReference: {fileID: 807941406}
     - target: {fileID: 8213050002772905893, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.8007665
@@ -941,6 +949,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 618404515}
     m_Modifications:
+    - target: {fileID: 3634511029175878745, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
+      propertyPath: GrabItem
+      value: 
+      objectReference: {fileID: 1198786374}
     - target: {fileID: 6251273056354593180, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
       propertyPath: _items.Array.size
       value: 2
@@ -951,6 +963,10 @@ PrefabInstance:
       objectReference: {fileID: 1198786374}
     - target: {fileID: 6251273056354593180, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
       propertyPath: _items.Array.data[1]
+      value: 
+      objectReference: {fileID: 2102807371}
+    - target: {fileID: 6297419382627900026, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
+      propertyPath: GrabItem
       value: 
       objectReference: {fileID: 2102807371}
     - target: {fileID: 8213050002772905893, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
@@ -1266,6 +1282,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 618404515}
     m_Modifications:
+    - target: {fileID: 3634511029175878745, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
+      propertyPath: GrabItem
+      value: 
+      objectReference: {fileID: 215908379}
     - target: {fileID: 6251273056354593180, guid: 590dac97ebee4f04a8af4c719f155a96, type: 3}
       propertyPath: _items.Array.data[0]
       value: 
@@ -1727,10 +1747,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7271552522688747768, guid: 02cb5437989c86141a8c15c398ee4568, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8898219543438628585, guid: 02cb5437989c86141a8c15c398ee4568, type: 3}
-      propertyPath: offset.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

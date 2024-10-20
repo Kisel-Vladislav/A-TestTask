@@ -4,33 +4,40 @@ namespace CodeBase.GrabLogic
 {
     public class ItemContainer : MonoBehaviour
     {
-        [SerializeField] private List<Transform> _itemPlacements;
-        [SerializeField] private List<GrabItem> _items;
+        [SerializeField] private List<ItemPlace> _itemPlacements; // Список позиций для хранения предметов
 
-        public bool IsFull => _items.Count >= _itemPlacements.Count;
-        public bool IsEmpty => _items.Count == 0;
+        public bool IsFull => _itemPlacements.TrueForAll(place => place.GrabItem != null);
+        public bool IsEmpty => _itemPlacements.TrueForAll(place => place.GrabItem == null);
 
         public bool TryAdd(GrabItem item)
         {
             if (IsFull)
                 return false;
 
-            _items.Add(item);
-            Placement(item);
+            foreach (var itemPlace in _itemPlacements)
+            {
+                if (itemPlace.GrabItem == null)
+                {
+                    itemPlace.Placement(item);
+                    return true;
+                }
+            }
 
-            return true;
+            return false;
         }
         public GrabItem Get()
         {
-            var item = _items[_items.Count - 1]; 
-            _items.RemoveAt(_items.Count - 1); 
-            return item; 
-        }
+            foreach (var itemPlace in _itemPlacements)
+            {
+                if (itemPlace.GrabItem != null)
+                {
+                    var item = itemPlace.GrabItem; 
+                    itemPlace.Release(); 
+                    return item; 
+                }
+            }
 
-        private void Placement(GrabItem item)
-        {
-            item.transform.SetParent(_itemPlacements[_items.Count - 1]);
-            item.gameObject.transform.localPosition = Vector3.zero;
+            return null; 
         }
     }
 }

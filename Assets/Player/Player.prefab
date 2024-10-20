@@ -226,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b583a38389ee1e04a9a832cf4d4166ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GrabItemPlacement: {fileID: 7381348035242899381}
-  offset: {x: 0, y: 1, z: 1}
+  itemPlace: {fileID: 6682852764058041432}
+  offset: {x: 0, y: 1, z: 0}
   radius: 1
 --- !u!1 &4219139521985965728
 GameObject:
@@ -238,6 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7381348035242899381}
+  - component: {fileID: 6682852764058041432}
   m_Layer: 0
   m_Name: GrabItemPlacement
   m_TagString: Untagged
@@ -260,6 +261,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2670846141937957367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6682852764058041432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4219139521985965728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981fa332b306562448fa6d01735b2cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrabItem: {fileID: 0}
 --- !u!1 &7665757177485920204
 GameObject:
   m_ObjectHideFlags: 0

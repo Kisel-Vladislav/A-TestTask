@@ -6,13 +6,12 @@ namespace CodeBase.Player
 {
     public class PlayerGrab : MonoBehaviour
     {
-        [SerializeField] Transform GrabItemPlacement;
+        [SerializeField] private ItemPlace itemPlace;
         [SerializeField] private Vector3 offset;
         [SerializeField] private float radius;
 
-        private GrabItem _grabItem;
         private IInputService _inputService;
-        public bool HasGrabItem => _grabItem != null;
+        public bool HasGrabItem => itemPlace.GrabItem != null;
 
         private void Awake()
         {
@@ -36,21 +35,18 @@ namespace CodeBase.Player
         }
         private bool TryPlaceItemInContainer()
         {
-            Vector3 spherePosition = GetSpherePosition();
-            var colliders = Physics.OverlapSphere(spherePosition, radius);
+            var colliders = GetCollidersInSphere();
 
             foreach (var collider in colliders)
             {
                 if (collider.gameObject.TryGetComponent<ItemContainer>(out var container))
                 {
-                    if (container.TryAdd(_grabItem))
-                    {
-                        return true; 
-                    }
+                    if (container.TryAdd(itemPlace.GrabItem))
+                        return true;
                 }
             }
 
-            return false; 
+            return false;
         }
 
         private void Grab()
@@ -63,15 +59,13 @@ namespace CodeBase.Player
         }
         private bool TryGrabItemFromContainer()
         {
-            Vector3 spherePosition = GetSpherePosition();
-            var colliders = Physics.OverlapSphere(spherePosition, radius);
+            var colliders = GetCollidersInSphere();
 
             foreach (var collider in colliders)
             {
                 if (collider.gameObject.TryGetComponent<ItemContainer>(out var container) && !container.IsEmpty)
                 {
-                    var containerItem = container.Get();
-                    GrabbedItem(containerItem);
+                    GrabbedItem(container.Get());
                     return true;
                 }
             }
@@ -94,25 +88,15 @@ namespace CodeBase.Player
 
             return false;
         }
-        private void GrabbedItem(GrabItem grabItem)
-        {
-            grabItem.transform.SetParent(GrabItemPlacement);
-            grabItem.gameObject.transform.localPosition = Vector3.zero;
 
-            _grabItem = grabItem;
-        }
-
-        private Vector3 GetSpherePosition()
+        private void GrabbedItem(GrabItem grabItem) => itemPlace.Placement(grabItem);
+        private void ReleaseGrabbedItem() => itemPlace.Release();
+        private Vector3 GetSpherePosition() => transform.position + transform.forward * radius + offset;
+        private Collider[] GetCollidersInSphere()
         {
-            return transform.position + transform.forward * radius + offset;
-        }
-        private void ReleaseGrabbedItem()
-        {
-            if (_grabItem != null)
-            {
-                _grabItem.transform.SetParent(null);
-                _grabItem = null;
-            }
+            Vector3 spherePosition = GetSpherePosition();
+            var colliders = Physics.OverlapSphere(spherePosition, radius);
+            return colliders;
         }
 
         private void OnDrawGizmos()
